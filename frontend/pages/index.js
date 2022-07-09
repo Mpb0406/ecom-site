@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
+import Products from "../components/Products";
 
 export default function Home() {
   const [results] = useQuery({ query: PRODUCT_QUERY });
@@ -20,7 +21,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>Home Page</h1>
+      <h1>All Products</h1>
+      {products.map((product) => (
+        <Products key={product.attributes.slug} product={product} />
+      ))}
     </div>
   );
 }
