@@ -1,4 +1,5 @@
 import { Provider, createClient } from "urql";
+import "../styles/globals.css";
 
 const client = createClient({ url: process.env.NEXT_PUBLIC_BACKEND_API });
 

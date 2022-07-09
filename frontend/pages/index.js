@@ -11,8 +11,6 @@ export default function Home() {
   if (error) return <p>{error.message}</p>;
   const products = data.products.data;
 
-  console.log(products);
-
   return (
     <div>
       <Head>
