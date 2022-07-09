@@ -19,10 +19,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>All Products</h1>
-      {products.map((product) => (
-        <Products key={product.attributes.slug} product={product} />
-      ))}
+      <div
+        id="products-gallery"
+        className="grid grid-cols-20 justify-items-center mt-24">
+        {products.map((product) => (
+          <Products key={product.attributes.slug} product={product} />
+        ))}
+      </div>
     </div>
   );
 }

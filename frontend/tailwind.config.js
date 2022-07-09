@@ -5,7 +5,14 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        20: "repeat(auto-fit, minmax(20rem, 1fr))",
+      },
+      spacing: {
+        "screen-80": "80vw",
+      },
+    },
   },
   plugins: [],
 };
