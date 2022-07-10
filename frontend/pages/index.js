@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useQuery } from "urql";
 import { PRODUCT_QUERY } from "../lib/query";
 import Products from "../components/Products";
+import Hero from "../components/Hero";
 
 export default function Home() {
   const [results] = useQuery({ query: PRODUCT_QUERY });
@@ -19,6 +20,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Hero />
+      <h1 className="text-center my-10 text-4xl font-bold">All Products</h1>
       <div
         id="products-gallery"
         className="grid grid-cols-20 justify-items-center mt-24">

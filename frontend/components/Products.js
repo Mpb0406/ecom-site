@@ -5,7 +5,7 @@ import { FiShoppingCart } from "react-icons/fi";
 const Products = ({ product }) => {
   const { title, price, image, slug } = product.attributes;
   return (
-    <div>
+    <div className="my-10">
       <Link href={`/product/${slug}`}>
         <img
           className="rounded-sm w-72 cursor-pointer"
