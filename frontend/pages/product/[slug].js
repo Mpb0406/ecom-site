@@ -3,6 +3,7 @@ import { useQuery } from "urql";
 import { GET_PRODUCT } from "../../lib/query";
 import { useRouter } from "next/router";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { useStateContext } from "../../lib/context";
 
 const ProductDetails = () => {
   const { query } = useRouter();
@@ -11,6 +12,8 @@ const ProductDetails = () => {
     variables: { slug: query.slug },
   });
   const { data, error, fetching } = results;
+
+  const { increaseQty, decreaseQty, qty } = useStateContext();
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -26,11 +29,11 @@ const ProductDetails = () => {
           <div className="flex items-center justify-between">
             <div className="flex w-1/3 items-center justify-between">
               <p>Quantity</p>
-              <button>
+              <button onClick={decreaseQty}>
                 <FaMinusCircle />
               </button>
-              <span>1</span>
-              <button>
+              <span>{qty}</span>
+              <button onClick={increaseQty}>
                 <FaPlusCircle />
               </button>
             </div>
