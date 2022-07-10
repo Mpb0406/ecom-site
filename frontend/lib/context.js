@@ -5,6 +5,7 @@ const ShopContext = createContext();
 export const StateContext = ({ children }) => {
   // State Data
   const [qty, setQty] = useState(1);
+  const [showCart, setShowCart] = useState(false);
 
   // State Functions
   // Increase Quantity
@@ -22,7 +23,8 @@ export const StateContext = ({ children }) => {
   };
 
   return (
-    <ShopContext.Provider value={{ qty, increaseQty, decreaseQty }}>
+    <ShopContext.Provider
+      value={{ qty, increaseQty, decreaseQty, showCart, setShowCart }}>
       {children}
     </ShopContext.Provider>
   );
