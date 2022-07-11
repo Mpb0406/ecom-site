@@ -6,6 +6,9 @@ export const StateContext = ({ children }) => {
   // State Data
   const [qty, setQty] = useState(1);
   const [showCart, setShowCart] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [totalQuantities, setTotalQuantities] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // State Functions
   // Increase Quantity
