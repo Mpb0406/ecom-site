@@ -13,12 +13,12 @@ const ProductDetails = () => {
   });
   const { data, error, fetching } = results;
 
-  const { increaseQty, decreaseQty, qty } = useStateContext();
+  const { increaseQty, decreaseQty, qty, cartItems, addToCart } =
+    useStateContext();
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
   const product = data.products.data[0].attributes;
-  console.log(product);
   return (
     <div className="mt-24 flex items-center justify-between mx-12">
       <img src={product.image.data.attributes.formats.small.url} alt="" />
@@ -40,7 +40,9 @@ const ProductDetails = () => {
             <p>${product.price}</p>
           </div>
 
-          <button className="bg-green-400 my-5 w-full px-4 py-2">
+          <button
+            className="bg-green-400 my-5 w-full px-4 py-2"
+            onClick={() => addToCart(data.products.data[0].attributes, qty)}>
             Add to cart
           </button>
         </div>
