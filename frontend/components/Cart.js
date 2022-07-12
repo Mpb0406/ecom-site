@@ -1,8 +1,9 @@
 import React from "react";
 import { useStateContext } from "../lib/context";
+import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 
 const Cart = () => {
-  const { setShowCart } = useStateContext();
+  const { setShowCart, cartItems } = useStateContext();
   return (
     <div
       id="cart-wrapper"
@@ -10,20 +11,41 @@ const Cart = () => {
       onClick={() => setShowCart(false)}>
       <section
         id="cart"
-        className="h-screen w-1/3 bg-gray-100 opacity-100"
+        className="h-screen w-1/3 bg-gray-100 opacity-100 py-5 flex flex-col"
         onClick={(e) => e.stopPropagation()}>
-        <div id="item-card" className="flex bg-yellow-400 w-3/4 mx-auto mt-12">
-          <div className="bg-blue-400 h-12 w-12"></div>
-          <div>
-            <h3>Product Title</h3>
-            <div className="flex">
-              <h4>Quantity</h4>
-              <button>-</button>
-              <p>1</p>
-              <button>+</button>
+        {/* Map Over Products to Display Cards */}
+
+        {cartItems.length >= 1 &&
+          cartItems.map((item) => (
+            <div
+              id="item-card"
+              className="flex bg-zinc-200 w-3/4 mx-auto mt-5 p-3 rounded-sm">
+              <img
+                src={item.image.data.attributes.formats.thumbnail.url}
+                alt={item.title}
+                className="h-16"
+              />
+              <div className="mx-3">
+                <h3 className="font-bold text-sm">{item.title}</h3>
+                <div className="flex mt-3 items-center">
+                  <h4 className="text-xs font-bold text-zinc-600 mr-3">
+                    Quantity
+                  </h4>
+                  <button>
+                    <FaMinusCircle />
+                  </button>
+                  <p className="mx-2">{item.quantity}</p>
+                  <button>
+                    <FaPlusCircle />
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          ))}
+
+        <button className="w-max self-center mt-10 px-12 py-3 bg-black text-white">
+          Checkout
+        </button>
       </section>
     </div>
   );
