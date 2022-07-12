@@ -27,6 +27,12 @@ export const StateContext = ({ children }) => {
 
   // Add Item to Cart
   const addToCart = (product, quantity) => {
+    // Update Total Item Quantity
+    setTotalQuantities((prevState) => prevState + quantity);
+
+    // Update Total Cart Price
+    setTotalPrice((prevState) => prevState + product.price * quantity);
+
     const exists = cartItems.find((item) => item.slug === product.slug);
     if (exists) {
       setCartItems(
