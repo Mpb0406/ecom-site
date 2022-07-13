@@ -47,6 +47,29 @@ export const StateContext = ({ children }) => {
     }
   };
 
+  // Remove Item From Cart
+  const onRemove = (product) => {
+    // Set Total Price
+    setTotalPrice((prevState) => prevState - product.price);
+
+    //  Set Total Quantities
+    setTotalQuantities((prevState) => prevState - 1);
+
+    const exists = cartItems.find((item) => item.slug === product.slug);
+
+    if (exists.quantity === 1) {
+      setCartItems(cartItems.filter((item) => item.slug !== product.slug));
+    } else {
+      setCartItems(
+        cartItems.map((item) =>
+          item.slug === product.slug
+            ? { ...exists, quantity: exists.quantity - 1 }
+            : item
+        )
+      );
+    }
+  };
+
   return (
     <ShopContext.Provider
       value={{
@@ -59,6 +82,7 @@ export const StateContext = ({ children }) => {
         addToCart,
         totalPrice,
         totalQuantities,
+        onRemove,
       }}>
       {children}
     </ShopContext.Provider>
