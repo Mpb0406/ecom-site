@@ -1,8 +1,6 @@
 import Stripe from "stripe";
 
-const stripe = new Stripe(
-  process.env.process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY
-);
+const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
@@ -10,12 +8,12 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         submit_type: "pay",
         mode: "payment",
-        payment_method_options: ["card"],
+        payment_method_types: ["card"],
         shipping_address_collection: {
           allowed_countries: ["US"],
         },
         allow_promotion_codes: true,
-        shipping_options: [{ shipping_rate: "shr_1LHrPUKVXoMgj0DX6eCKSxsl" }],
+        shipping_options: [{ shipping_rate: "shr_1LLI7BBTYT3XE3OTuH3GBblv" }],
         line_items: req.body.map((item) => {
           return {
             price_data: {

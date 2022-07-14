@@ -2,7 +2,7 @@ import React from "react";
 import { useStateContext } from "../lib/context";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
-import { getStripe } from "../lib/getStripe";
+import getStripe from "../lib/getStripe";
 
 const Cart = () => {
   const { cartItems, setShowCart, addToCart, onRemove, totalPrice } =
@@ -11,7 +11,7 @@ const Cart = () => {
   // Stripe Payments
   const handleCheckout = async () => {
     const stripe = await getStripe();
-    const response = fetch("/api/stripe", {
+    const response = await fetch("/api/stripe", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(cartItems),
@@ -70,7 +70,9 @@ const Cart = () => {
               Total Price: ${totalPrice}
             </h4>
 
-            <button className="w-max self-center mt-10 px-12 py-3 bg-black text-white">
+            <button
+              className="w-max self-center mt-10 px-12 py-3 bg-black text-white"
+              onClick={handleCheckout}>
               Checkout
             </button>
           </div>
