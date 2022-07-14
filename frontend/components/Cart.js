@@ -2,10 +2,24 @@ import React from "react";
 import { useStateContext } from "../lib/context";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { getStripe } from "../lib/getStripe";
 
 const Cart = () => {
   const { cartItems, setShowCart, addToCart, onRemove, totalPrice } =
     useStateContext();
+
+  // Stripe Payments
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const response = fetch("/api/stripe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(cartItems),
+    });
+    const data = await response.json();
+    await stripe.redirectToCheckout({ sessionId: data.id });
+  };
+
   return (
     <div
       id="cart-wrapper"
