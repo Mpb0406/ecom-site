@@ -1,9 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import { FiShoppingCart } from "react-icons/fi";
+import { useStateContext } from "../lib/context";
 
 const Products = ({ product }) => {
   const { title, price, image, slug } = product.attributes;
+
+  const { addToCart } = useStateContext();
   return (
     <div className="my-10">
       <Link href={`/product/${slug}`}>
@@ -17,7 +20,9 @@ const Products = ({ product }) => {
         <h2 className="font-bold text-md">{title}</h2>
         <div className="flex items-center justify-between">
           <p className="text-md font-bold text-gray-500 mx-1">${price}</p>
-          <button className="text-sm font-bold text-red-400 mx-2 flex items-center gap-2">
+          <button
+            className="text-sm font-bold text-red-400 mx-2 flex items-center gap-2"
+            onClick={() => addToCart(product.attributes, 1)}>
             <FiShoppingCart />
             Add to cart
           </button>

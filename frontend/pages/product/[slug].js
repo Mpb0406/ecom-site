@@ -19,6 +19,8 @@ const ProductDetails = () => {
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
   const product = data.products.data[0].attributes;
+
+  console.log(product);
   return (
     <div className="mt-24 flex items-center justify-between mx-12">
       <img src={product.image.data.attributes.formats.small.url} alt="" />
