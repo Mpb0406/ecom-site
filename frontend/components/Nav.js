@@ -2,6 +2,7 @@ import React from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import Cart from "./Cart";
 import { useStateContext } from "../lib/context";
+const { AnimatePresence, motion } = require("framer-motion");
 
 const Nav = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
@@ -15,15 +16,18 @@ const Nav = () => {
           className="flex items-center gap-2 cursor-pointer text-green-500 relative"
           onClick={() => setShowCart(true)}>
           {totalQuantities > 0 && (
-            <span className="bg-red-500 text-gray-100 rounded-xl h-5 w-5 p-2 text-xs absolute -bottom-2 -left-2 flex justify-center items-center">
+            <motion.span
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-red-500 text-gray-100 rounded-xl h-5 w-5 p-2 text-xs absolute -bottom-2 -left-2 flex justify-center items-center">
               {totalQuantities}
-            </span>
+            </motion.span>
           )}
           <FiShoppingCart className="text-2xl" />
           <h4>Cart</h4>
         </div>
       </div>
-      {showCart && <Cart />}
+      <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
     </nav>
   );
 };

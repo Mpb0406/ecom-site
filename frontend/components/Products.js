@@ -8,7 +8,7 @@ const Products = ({ product }) => {
 
   const { addToCart } = useStateContext();
   return (
-    <div className="my-10">
+    <div className="my-10 bg-zinc-200 p-3 rounded-md shadow-xl">
       <Link href={`/product/${slug}`}>
         <img
           className="rounded-sm w-72 cursor-pointer"

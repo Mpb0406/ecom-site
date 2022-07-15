@@ -39,7 +39,7 @@ const ProductDetails = () => {
                 <FaPlusCircle />
               </button>
             </div>
-            <p>${product.price}</p>
+            <p className="text-2xl font-bold">${product.price}</p>
           </div>
 
           <button
