@@ -15,8 +15,12 @@ const ProductDetails = () => {
   });
   const { data, error, fetching } = results;
 
-  const { increaseQty, decreaseQty, qty, addToCart, cartItems } =
+  const { increaseQty, decreaseQty, qty, addToCart, setQty } =
     useStateContext();
+
+  useEffect(() => {
+    setQty(1);
+  }, []);
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
