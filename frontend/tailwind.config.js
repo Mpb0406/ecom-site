@@ -12,6 +12,10 @@ module.exports = {
       spacing: {
         "screen-80": "80vw",
       },
+      fontFamily: {
+        display: ["Leckerli One", "sans-serif"],
+        sans: ["Noto Sans", "sans-serif"],
+      },
     },
   },
   plugins: [],

@@ -8,7 +8,7 @@ const Products = ({ product }) => {
 
   const { addToCart } = useStateContext();
   return (
-    <div className="my-10 bg-zinc-200 p-3 rounded-md shadow-xl">
+    <div className="my-10 bg-white p-3 rounded-md shadow-xl">
       <Link href={`/product/${slug}`}>
         <img
           className="rounded-sm w-72 cursor-pointer"
@@ -21,7 +21,7 @@ const Products = ({ product }) => {
         <div className="flex items-center justify-between">
           <p className="text-md font-bold text-gray-500 mx-1">${price}</p>
           <button
-            className="text-sm font-bold text-red-400 mx-2 flex items-center gap-2"
+            className="text-sm font-bold text-green-500 hover:text-green-600 duration-200 mx-2 flex items-center gap-2"
             onClick={() => addToCart(product.attributes, 1)}>
             <FiShoppingCart />
             Add to cart

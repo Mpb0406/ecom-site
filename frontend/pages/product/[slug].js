@@ -32,11 +32,11 @@ const ProductDetails = () => {
             <div className="flex w-1/3 items-center justify-between">
               <p>Quantity</p>
               <button onClick={decreaseQty}>
-                <FaMinusCircle />
+                <FaMinusCircle className="text-gray-500" />
               </button>
-              <span>{qty}</span>
+              <span className="text-lg font-bold">{qty}</span>
               <button onClick={increaseQty}>
-                <FaPlusCircle />
+                <FaPlusCircle className="text-gray-500" />
               </button>
             </div>
             <p className="text-2xl font-bold">${product.price}</p>

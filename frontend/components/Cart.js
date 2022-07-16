@@ -72,6 +72,7 @@ const Cart = () => {
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
               <motion.div
+                layout
                 variants={card}
                 id="item-card"
                 className="flex bg-zinc-200 w-3/4 mx-auto mt-5 p-3 rounded-sm">

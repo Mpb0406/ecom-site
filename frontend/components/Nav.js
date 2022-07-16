@@ -7,10 +7,12 @@ const { AnimatePresence, motion } = require("framer-motion");
 const Nav = () => {
   const { showCart, setShowCart, totalQuantities } = useStateContext();
   return (
-    <nav className="fixed top-0 left-0 w-full z-10">
-      <div className="flex items-center justify-between my-6 mx-12 ">
-        <h4 className="cursor-pointer text-green-500 font-bold text-lg">
-          <a href="/">Deb's Designs</a>
+    <nav className="fixed top-0 left-0 w-full z-10 bg-green-500 shadow-lg">
+      <div className="flex items-center justify-between my-3 mx-12 ">
+        <h4 className="cursor-pointer text-slate-100">
+          <a href="/" className="font-display text-3xl">
+            Deb's Designs
+          </a>
         </h4>
         <div
           className="flex items-center gap-2 cursor-pointer text-green-500 relative"
@@ -23,8 +25,8 @@ const Nav = () => {
               {totalQuantities}
             </motion.span>
           )}
-          <FiShoppingCart className="text-2xl" />
-          <h4>Cart</h4>
+          <FiShoppingCart className="text-2xl text-slate-100" />
+          <h4 className="text-slate-100">Cart</h4>
         </div>
       </div>
       <AnimatePresence>{showCart && <Cart />}</AnimatePresence>
