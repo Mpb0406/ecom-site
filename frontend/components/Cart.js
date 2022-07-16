@@ -2,6 +2,7 @@ import React from "react";
 import { useStateContext } from "../lib/context";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
 import getStripe from "../lib/getStripe";
 const { motion } = require("framer-motion");
 
@@ -50,8 +51,13 @@ const Cart = () => {
         animate={{ x: "0%" }}
         exit={{ x: "90%" }}
         id="cart"
-        className="h-screen w-1/3 bg-gray-100 opacity-100 py-5 flex flex-col"
+        className="h-screen w-full md:w-1/2 lg:w-1/3 bg-gray-100 opacity-100 py-5 flex flex-col relative"
         onClick={(e) => e.stopPropagation()}>
+        <button
+          className="absolute top-5 right-5"
+          onClick={() => setShowCart(false)}>
+          <AiOutlineClose className="text-3xl hover:text-gray-500 duration-200" />
+        </button>
         {cartItems.length < 1 && (
           <motion.div
             initial={{ opacity: 0, scale: 0.7 }}
@@ -68,7 +74,8 @@ const Cart = () => {
           initial="hidden"
           animate="show"
           layout
-          transition={{ staggerChildren: 0.1 }}>
+          transition={{ staggerChildren: 0.1 }}
+          className="mt-6">
           {cartItems.length >= 1 &&
             cartItems.map((item) => (
               <motion.div

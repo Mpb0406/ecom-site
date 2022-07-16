@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { useQuery } from "urql";
 import { GET_PRODUCT } from "../../lib/query";
 import { useRouter } from "next/router";
@@ -14,7 +14,12 @@ const ProductDetails = () => {
   });
   const { data, error, fetching } = results;
 
-  const { increaseQty, decreaseQty, qty, addToCart } = useStateContext();
+  const { increaseQty, decreaseQty, qty, addToCart, cartItems } =
+    useStateContext();
+
+  // useEffect(() => {
+  //   localStorage.setItem("cart", JSON.stringify(cartItems));
+  // }, [cartItems, addToCart]);
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
@@ -34,14 +39,16 @@ const ProductDetails = () => {
         <div>
           <div className="flex items-center justify-between">
             <div className="flex w-full items-center justify-start">
-              <h3 className="text-xl font-bold text-gray-500">Quantity</h3>
-              <div className="w-1/2 flex items-center justify-around">
+              <h3 className="text-xl md:text-lg font-bold text-gray-500">
+                Quantity
+              </h3>
+              <div className="w-1/2 flex items-center justify-around md:px-6">
                 <button onClick={decreaseQty}>
-                  <FaMinusCircle className="text-gray-500 text-2xl" />
+                  <FaMinusCircle className="text-gray-500 text-2xl md:text-xl" />
                 </button>
-                <span className="text-xl font-bold">{qty}</span>
+                <span className="text-xl md:text-lg font-bold">{qty}</span>
                 <button onClick={increaseQty}>
-                  <FaPlusCircle className="text-gray-500 text-2xl" />
+                  <FaPlusCircle className="text-gray-500 text-2xl md:text-xl" />
                 </button>
               </div>
             </div>
