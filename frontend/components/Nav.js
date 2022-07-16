@@ -9,7 +9,7 @@ const Nav = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-10 bg-green-500 shadow-lg">
       <div className="flex items-center justify-between my-3 mx-12 ">
-        <h4 className="cursor-pointer text-slate-100">
+        <h4 className="cursor-pointer text-slate-100 font-display">
           <a href="/" className="font-display text-3xl">
             Deb's Designs
           </a>
