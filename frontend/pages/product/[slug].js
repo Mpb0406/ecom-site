@@ -3,6 +3,7 @@ import { useQuery } from "urql";
 import { GET_PRODUCT } from "../../lib/query";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import Head from "next/head";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useStateContext } from "../../lib/context";
 
@@ -17,16 +18,16 @@ const ProductDetails = () => {
   const { increaseQty, decreaseQty, qty, addToCart, cartItems } =
     useStateContext();
 
-  // useEffect(() => {
-  //   localStorage.setItem("cart", JSON.stringify(cartItems));
-  // }, [cartItems, addToCart]);
-
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
   const product = data.products.data[0].attributes;
 
   return (
     <div className="mt-24 flex flex-col md:flex-row items-center justify-between mx-12">
+      <Head>
+        <title>{product.title}</title>
+      </Head>
+
       <Image
         src={product.image.data.attributes.formats.small.url}
         width="500"
