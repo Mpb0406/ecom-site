@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "urql";
 import { GET_PRODUCT } from "../../lib/query";
 import { useRouter } from "next/router";
+import Image from "next/image";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useStateContext } from "../../lib/context";
 
@@ -13,30 +14,36 @@ const ProductDetails = () => {
   });
   const { data, error, fetching } = results;
 
-  const { increaseQty, decreaseQty, qty, cartItems, addToCart } =
-    useStateContext();
+  const { increaseQty, decreaseQty, qty, addToCart } = useStateContext();
 
   if (fetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
   const product = data.products.data[0].attributes;
 
   return (
-    <div className="mt-24 flex items-center justify-between mx-12">
-      <img src={product.image.data.attributes.formats.small.url} alt="" />
-      <div className="mr-24 flex flex-col h-64">
-        <h3 className="text-2xl">{product.title}</h3>
-        <p className="pt-3 pb-10">{product.description}</p>
+    <div className="mt-24 flex flex-col md:flex-row items-center justify-between mx-12">
+      <Image
+        src={product.image.data.attributes.formats.small.url}
+        width="500"
+        height="400"
+        alt=""
+      />
+      <div className="md:mx-12 mt-10 md:mt-0 text-center flex flex-col h-64">
+        <h3 className="text-3xl font-bold">{product.title}</h3>
+        <p className="pt-3 pb-10 mb-12 md:mb-6">{product.description}</p>
         <div>
           <div className="flex items-center justify-between">
-            <div className="flex w-1/3 items-center justify-between">
-              <p>Quantity</p>
-              <button onClick={decreaseQty}>
-                <FaMinusCircle className="text-gray-500" />
-              </button>
-              <span className="text-lg font-bold">{qty}</span>
-              <button onClick={increaseQty}>
-                <FaPlusCircle className="text-gray-500" />
-              </button>
+            <div className="flex w-full items-center justify-start">
+              <h3 className="text-xl font-bold text-gray-500">Quantity</h3>
+              <div className="w-1/2 flex items-center justify-around">
+                <button onClick={decreaseQty}>
+                  <FaMinusCircle className="text-gray-500 text-2xl" />
+                </button>
+                <span className="text-xl font-bold">{qty}</span>
+                <button onClick={increaseQty}>
+                  <FaPlusCircle className="text-gray-500 text-2xl" />
+                </button>
+              </div>
             </div>
             <p className="text-2xl font-bold">${product.price}</p>
           </div>
