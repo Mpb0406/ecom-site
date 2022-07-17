@@ -18,7 +18,7 @@ const Hero = () => {
             type: "spring",
             stiffness: 200,
           }}
-          className=" text-6xl text-gray-200 tracking-wider">
+          className=" text-6xl text-gray-200 tracking-wider text-center leading-relaxed">
           Deb's Designs
         </motion.h1>
         <motion.a

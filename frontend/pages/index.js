@@ -27,7 +27,7 @@ export default function Home() {
       <h1 className="text-center my-10 text-4xl font-bold">All Products</h1>
       <div
         id="products-gallery"
-        className="grid grid-cols-20 justify-items-center mt-24">
+        className="grid grid-cols-20 gap-5 justify-items-center mt-20">
         {products.map((product) => (
           <Products key={product.attributes.slug} product={product} />
         ))}
